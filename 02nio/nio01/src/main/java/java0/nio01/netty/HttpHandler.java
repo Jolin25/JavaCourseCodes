@@ -16,13 +16,24 @@ import static io.netty.handler.codec.http.HttpResponseStatus.NO_CONTENT;
 import static io.netty.handler.codec.http.HttpResponseStatus.OK;
 import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
 
+/**
+ * 适配器
+ *
+ * @author jrl
+ * @date 2021-9-23
+ */
 public class HttpHandler extends ChannelInboundHandlerAdapter {
-    
+
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) {
         ctx.flush();
     }
 
+    /**
+     * @param msg 所有请求的报文
+     * @return
+     * @date 2021-9-23
+     */
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
         try {
@@ -30,13 +41,14 @@ public class HttpHandler extends ChannelInboundHandlerAdapter {
             FullHttpRequest fullRequest = (FullHttpRequest) msg;
             String uri = fullRequest.uri();
             //logger.info("接收到的请求url为{}", uri);
+            // 这里就相当于一个路由或者是spring mvc 里面的mapping
             if (uri.contains("/test")) {
                 handlerTest(fullRequest, ctx, "hello,kimmking");
             } else {
                 handlerTest(fullRequest, ctx, "hello,others");
             }
-    
-        } catch(Exception e) {
+
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             ReferenceCountUtil.release(msg);
@@ -44,6 +56,7 @@ public class HttpHandler extends ChannelInboundHandlerAdapter {
     }
 
     private void handlerTest(FullHttpRequest fullRequest, ChannelHandlerContext ctx, String body) {
+        // 需要组装FullHTTPResponse这个对象
         FullHttpResponse response = null;
         try {
             String value = body; // 对接上次作业的httpclient或者okhttp请求另一个url的响应数据
@@ -57,7 +70,7 @@ public class HttpHandler extends ChannelInboundHandlerAdapter {
             response.headers().setInt("Content-Length", response.content().readableBytes());
 
         } catch (Exception e) {
-            System.out.println("处理出错:"+e.getMessage());
+            System.out.println("处理出错:" + e.getMessage());
             response = new DefaultFullHttpResponse(HTTP_1_1, NO_CONTENT);
         } finally {
             if (fullRequest != null) {
