@@ -11,23 +11,30 @@ import io.netty.handler.codec.http.HttpServerCodec;
 
 import java.util.List;
 
+/**
+ * @author jrl
+ * @date 2021-9-28
+ */
 public class HttpInboundInitializer extends ChannelInitializer<SocketChannel> {
-	
-	private List<String> proxyServer;
-	
-	public HttpInboundInitializer(List<String> proxyServer) {
-		this.proxyServer = proxyServer;
-	}
-	
-	@Override
-	public void initChannel(SocketChannel ch) {
-		ChannelPipeline p = ch.pipeline();
+
+    private List<String> proxyServer;
+
+    public HttpInboundInitializer(List<String> proxyServer) {
+        this.proxyServer = proxyServer;
+    }
+
+    @Override
+    public void initChannel(SocketChannel ch) {
+        ChannelPipeline p = ch.pipeline();
 //		if (sslCtx != null) {
 //			p.addLast(sslCtx.newHandler(ch.alloc()));
 //		}
-		p.addLast(new HttpServerCodec());
-		//p.addLast(new HttpServerExpectContinueHandler());
-		p.addLast(new HttpObjectAggregator(1024 * 1024));
-		p.addLast(new HttpInboundHandler(this.proxyServer));
-	}
+        // 添加了HTTPServer编码器
+        p.addLast(new HttpServerCodec());
+        //p.addLast(new HttpServerExpectContinueHandler());
+        // 添加了聚合器
+        p.addLast(new HttpObjectAggregator(1024 * 1024));
+        // 添加了适配器
+        p.addLast(new HttpInboundHandler(this.proxyServer));
+    }
 }

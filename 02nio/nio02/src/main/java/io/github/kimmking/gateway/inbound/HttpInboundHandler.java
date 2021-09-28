@@ -12,18 +12,28 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
+/**
+ * 每个channel要怎么处理io事件，从io准备好数据以后，进行的处理，到业务处理的接口调用
+ *
+ * @author jrl
+ * @date 2021-9-28
+ */
 public class HttpInboundHandler extends ChannelInboundHandlerAdapter {
 
     private static Logger logger = LoggerFactory.getLogger(HttpInboundHandler.class);
     private final List<String> proxyServer;
+    /**
+     * todo doubt:  这个是拿来干嘛的
+     */
     private HttpOutboundHandler handler;
     private HttpRequestFilter filter = new HeaderHttpRequestFilter();
-    
+
     public HttpInboundHandler(List<String> proxyServer) {
         this.proxyServer = proxyServer;
+        /** todo doubt: 为什么要用outboundHandler来赋给inboundHandler */
         this.handler = new HttpOutboundHandler(this.proxyServer);
     }
-    
+
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) {
         ctx.flush();
@@ -39,10 +49,10 @@ public class HttpInboundHandler extends ChannelInboundHandlerAdapter {
 //            if (uri.contains("/test")) {
 //                handlerTest(fullRequest, ctx);
 //            }
-    
+            // todo 这里把过滤器进行了执行是吗
             handler.handle(fullRequest, ctx, filter);
-    
-        } catch(Exception e) {
+
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             ReferenceCountUtil.release(msg);
