@@ -32,6 +32,9 @@ import static io.netty.handler.codec.http.HttpResponseStatus.NO_CONTENT;
 import static io.netty.handler.codec.http.HttpResponseStatus.OK;
 import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
 
+/**
+ * done doubt: outbound负责的是 从网关到客户端，还是从网关到业务服务  ---> outbound负责的是  由应用程序主动请求而触发的事件
+ */
 public class HttpOutboundHandler {
 
     private CloseableHttpAsyncClient httpclient;
@@ -60,7 +63,7 @@ public class HttpOutboundHandler {
                 .setIoThreadCount(cores)
                 .setRcvBufSize(32 * 1024)
                 .build();
-        /** todo doubt:  什么是httpclient，为什么要启动它*/
+        /** todo doubt:  这是啥*/
         httpclient = HttpAsyncClients.custom().setMaxConnTotal(40)
                 .setMaxConnPerRoute(8)
                 .setDefaultIOReactorConfig(ioConfig)

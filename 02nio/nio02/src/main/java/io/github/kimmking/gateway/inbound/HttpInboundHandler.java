@@ -22,15 +22,11 @@ public class HttpInboundHandler extends ChannelInboundHandlerAdapter {
 
     private static Logger logger = LoggerFactory.getLogger(HttpInboundHandler.class);
     private final List<String> proxyServer;
-    /**
-     * todo doubt:  这个是拿来干嘛的
-     */
     private HttpOutboundHandler handler;
     private HttpRequestFilter filter = new HeaderHttpRequestFilter();
 
     public HttpInboundHandler(List<String> proxyServer) {
         this.proxyServer = proxyServer;
-        /** todo doubt: 为什么要用outboundHandler来赋给inboundHandler */
         this.handler = new HttpOutboundHandler(this.proxyServer);
     }
 

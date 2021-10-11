@@ -6,7 +6,11 @@ import io.github.kimmking.gateway.inbound.HttpInboundServer;
 import java.util.Arrays;
 
 /**
- * @author 小虫子的小日常
+ * knowledge point:
+ * 个人认为：用netty实现gateway需要实现的功能点是：
+ * 1.设置好gateway的端口和要代理的服务的端口
+ * 2.把客户端的请求准确的传递到被代理的服务中
+ * 3.做一些过滤器和路由的附加操作
  */
 public class NettyServerApplication {
 
@@ -23,13 +27,13 @@ public class NettyServerApplication {
 //          //  http://localhost:8088/api/hello  ==> backend service
         // java -Xmx512m gateway-server-0.0.1-SNAPSHOT.jar  #作为后端服务
 
-
+        // knowledge use:网关就是用来代理业务服务的
         // 这是多个后端url走随机路由的例子
         String proxyServers = System.getProperty("proxyServers", "http://localhost:8801,http://localhost:8802");
         int port = Integer.parseInt(proxyPort);
         System.out.println(GATEWAY_NAME + " " + GATEWAY_VERSION + " starting...");
-        // todo HttpInboundServer是什么
-        // todo 不应该是用netty写的什么server吗，那么这个httpInboundServer就是用netty框架写的nio的服务是吗
+        // done HttpInboundServer是什么 ---> 是用来处理输出的模块
+        // done 不应该是用netty写的什么server吗，那么这个httpInboundServer就是用netty框架写的nio的服务是吗 ---> 是的
         HttpInboundServer server = new HttpInboundServer(port, Arrays.asList(proxyServers.split(",")));
         System.out.println(GATEWAY_NAME + " " + GATEWAY_VERSION + " started at http://localhost:" + port + " for server:" + server.toString());
         try {
