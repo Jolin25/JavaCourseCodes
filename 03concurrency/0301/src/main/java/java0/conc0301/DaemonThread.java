@@ -14,6 +14,7 @@ public class DaemonThread {
         };
         Thread thread = new Thread(task);
         thread.setName("test-thread-1");
+        /** knowledge point:  setDaemon（）需要在start()之前，否则会抛运行时异常*/
         thread.setDaemon(true);
         thread.start();
 

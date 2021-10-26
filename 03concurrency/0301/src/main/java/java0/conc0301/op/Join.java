@@ -14,8 +14,9 @@ public class Join {
             for (int i = 0; i < 100; i++) {
                 if (i == 20) {
                     try {
-                        oo.wait(0);
-                        //thread1.join();
+//                        oo.wait();
+                        // todo 傻逼 回去再看一遍  join 和 wait
+                        thread1.join();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

@@ -19,17 +19,17 @@ public class WaitAndNotify {
                 e.printStackTrace();
             }
         }, "t2");
-//        Thread t3 = new Thread(() -> {
-//            try {
-//                methodClass.customer();
-//            } catch (InterruptedException e) {
-//                // TODO Auto-generated catch block
-//                e.printStackTrace();
-//            }
-//        }, "t3");
+        Thread t3 = new Thread(() -> {
+            try {
+                methodClass.customer();
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }, "t3");
         t1.start();
         t2.start();
-        //t3.start();
+        t3.start();
         
     }
 }
@@ -43,7 +43,7 @@ class MethodClass {
     public synchronized void product() throws InterruptedException {
         while (true) {
             System.out.println(Thread.currentThread().getName() + ":::run:::" + productCount);
-            Thread.sleep(10);
+            Thread.sleep(100);
             if (productCount >= MAX_COUNT) {
                 System.out.println("货舱已满,,.不必再生产");
                 
@@ -59,7 +59,7 @@ class MethodClass {
     public synchronized void customer() throws InterruptedException {
         while (true) {
             System.out.println(Thread.currentThread().getName() + ":::run:::" + productCount);
-            Thread.sleep(10);
+            Thread.sleep(100);
             if (productCount <= 0) {
                 System.out.println("货舱已无货...无法消费");
                 wait();
