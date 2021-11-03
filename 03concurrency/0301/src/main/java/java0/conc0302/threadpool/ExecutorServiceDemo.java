@@ -5,9 +5,16 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
+/**
+ * knowledge point:
+ * Executors：线程池的工具类
+ */
 public class ExecutorServiceDemo {
 
     public static void main(String[] args) {
+        /** knowledge point:
+         *  newScheduledThreadPool:支持定时以及周期性执行任务
+         * */
         ScheduledExecutorService executorService = Executors.newScheduledThreadPool(16);
         try {
             String str = executorService.submit(new Callable<String>() {

@@ -4,19 +4,22 @@ package java0.conc0301.sync;
 public class Thread2 {
 
     public void m4t1() {
+
         synchronized (this) {
+            System.out.println(this);
             int i = 5;
             while (i-- > 0) {
                 System.out.println(Thread.currentThread().getName() + " : " + i);
-                try {
-                    Thread.sleep(500);
-                } catch (InterruptedException ie) {
-                }
+//                try {
+//                    Thread.sleep(500);
+//                } catch (InterruptedException ie) {
+//                }
             }
         }
     }
 
     public synchronized void m4t2() {
+        System.out.println(this);
         int i = 5;
         while (i-- > 0) {
             System.out.println(Thread.currentThread().getName() + " : " + i);
