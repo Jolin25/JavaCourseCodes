@@ -27,4 +27,8 @@ public class ExceptionLearnB {
 
 
     }
+
+    public void 对自身异常未做任何处理() {
+        int a = 1 / 0;
+    }
 }
