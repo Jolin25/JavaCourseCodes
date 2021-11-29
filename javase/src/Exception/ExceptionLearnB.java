@@ -31,4 +31,12 @@ public class ExceptionLearnB {
     public void 对自身异常未做任何处理() {
         int a = 1 / 0;
     }
+
+    public void 处理异常信息() {
+        try {
+            int a = 1 / 0;
+        } catch (Exception e) {
+            throw e;
+        }
+    }
 }
