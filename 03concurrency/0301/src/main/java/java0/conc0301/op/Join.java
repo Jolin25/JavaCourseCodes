@@ -1,8 +1,8 @@
 package java0.conc0301.op;
 
-public  class Join {
-
-    public static void main(String[] args) throws InterruptedException {
+public class Join {
+    
+    public static void main(String[] args) {
         Object oo = new Object();
 
         MyThread thread1 = new MyThread("thread1 -- ");
@@ -34,37 +34,29 @@ public  class Join {
             }
         }
     }
-
+    
 }
 
 class MyThread extends Thread {
-
+    
     private String name;
     private Object oo;
-
+    
     public void setOo(Object oo) {
         this.oo = oo;
     }
-
+    
     public MyThread(String name) {
         this.name = name;
     }
-
+    
     @Override
     public void run() {
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        System.out.println("thread1 Lock:" + oo.toString());
-        System.out.println("thread1----" + Thread.holdsLock(oo));
         synchronized (oo) { // 这里用oo或this，效果不同
-            for (int i = 0; i < 10; i++) {
+            for (int i = 0; i < 100; i++) {
                 System.out.println(name + i);
             }
-//            oo.notify();
         }
     }
-
+    
 }
