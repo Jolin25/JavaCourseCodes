@@ -26,5 +26,8 @@ public class fastjson {
         //将对象转为json形式的字符串
         String s = JSON.toJSONString(p);
         System.out.println(s);
+        //如果java对象的属性没有赋值，则输出的json字符串对应的属性直接不展示
+        Person p1 = new Person(12);
+        System.out.println(JSON.toJSONString(p1));
     }
 }
