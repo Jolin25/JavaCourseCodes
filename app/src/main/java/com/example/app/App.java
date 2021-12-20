@@ -5,6 +5,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+/**
+ * knowledge point:  springboot 的入口点
+ */
 @SpringBootApplication
 public class App {
 
@@ -13,13 +16,12 @@ public class App {
     }
 
 
-
     // ==== 测试自动配置 ====
     @Autowired
     WebInfo info;
 
     @Bean
-    public void printInfo(){
+    public void printInfo() {
         System.out.println(info.getName());
     }
 

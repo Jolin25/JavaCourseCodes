@@ -11,8 +11,8 @@ import org.springframework.jms.annotation.EnableJms;
 //@EnableMongoRepositories
 public class Springboot01Application {
 
-	public static void main(String[] args) {
-		SpringApplication.run(Springboot01Application.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(Springboot01Application.class, args);
+    }
 
 }

@@ -6,6 +6,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
+/**
+ * knowledge point:  @Import 用来当前类是用来自动装配被引入的那个类的
+ */
 @Configuration
 @Import(WebConfiguration.class)
 @EnableConfigurationProperties(WebProperties.class)
@@ -18,8 +21,8 @@ public class WebAutoConfiguration {
     WebConfiguration configuration;
 
     @Bean
-    public WebInfo creatInfo(){
-        return new WebInfo(configuration.name + "-"+properties.getA());
+    public WebInfo creatInfo() {
+        return new WebInfo(configuration.name + "-" + properties.getA());
     }
 
 }
