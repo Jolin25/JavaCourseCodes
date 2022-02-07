@@ -6,19 +6,25 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class SpringDemo01 {
-
     public static void main(String[] args) {
-
+        /** knowledge point:
+         * spring原始获取配置文件的方式
+         */
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-//        Student student123 = context.getBean(Student.class);
 
+//        Student student123 = context.getBean(Student.class);
+        /** knowledge point:
+         * spring 根据 XML配置文件中的bean的id获取bean
+         */
         Student student123 = (Student) context.getBean("student123");
         System.out.println(student123.toString());
 
         student123.print();
 
         Student student100 = (Student) context.getBean("student100");
-        System.out.println(student100.toString());
+        //  println本来就要调用toString的--->对，没错，下面两行输出的内容式一样的
+        System.out.println("student100.toString()====>" + student100.toString());
+        System.out.println("student100           ====>" + student100);
 
         student100.print();
 
