@@ -3,16 +3,16 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    
+
     <groupId>io.kimmking</groupId>
     <artifactId>spring01</artifactId>
     <version>1.0</version>
-    
+
     <properties>
-<!--        <spring-version>5.2.7.RELEASE</spring-version>-->
+        <!--        <spring-version>5.2.7.RELEASE</spring-version>-->
         <spring-version>4.3.29.RELEASE</spring-version>
     </properties>
-    
+
     <build>
         <plugins>
             <plugin>
@@ -25,7 +25,7 @@
             </plugin>
         </plugins>
     </build>
-    
+
     <dependencies>
         <dependency>
             <groupId>com.google.guava</groupId>
@@ -42,11 +42,11 @@
             <artifactId>spring-core</artifactId>
             <version>${spring-version}</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.springframework</groupId>-->
-<!--            <artifactId>spring-jdbc</artifactId>-->
-<!--            <version>${spring-version}</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework</groupId>-->
+        <!--            <artifactId>spring-jdbc</artifactId>-->
+        <!--            <version>${spring-version}</version>-->
+        <!--        </dependency>-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-beans</artifactId>
@@ -87,11 +87,13 @@
             <artifactId>spring-test</artifactId>
             <version>${spring-version}</version>
         </dependency>
+        <!--spring messaging-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-messaging</artifactId>
             <version>${spring-version}</version>
         </dependency>
+        <!--spring jms ： jmsTemplate 就在这里面-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jms</artifactId>
@@ -102,7 +104,7 @@
             <artifactId>spring-expression</artifactId>
             <version>${spring-version}</version>
         </dependency>
-    
+
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
@@ -151,18 +153,18 @@
             <version>1.10.19</version>
             <scope>test</scope>
         </dependency>
-    
+        <!-- activeMQ 的 客户端-->
         <dependency>
             <groupId>org.apache.activemq</groupId>
             <artifactId>activemq-client</artifactId>
             <version>5.15.0</version>
         </dependency>
-    
+
         <!--        <dependency>-->
-<!--            <groupId>org.springframework</groupId>-->
-<!--            <artifactId>spring-jcl</artifactId>-->
-<!--            <version>5.2.7.RELEASE</version>-->
-<!--        </dependency>-->
+        <!--            <groupId>org.springframework</groupId>-->
+        <!--            <artifactId>spring-jcl</artifactId>-->
+        <!--            <version>5.2.7.RELEASE</version>-->
+        <!--        </dependency>-->
 
     </dependencies>
 
