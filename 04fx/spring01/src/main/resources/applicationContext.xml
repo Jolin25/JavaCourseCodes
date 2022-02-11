@@ -1,4 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?><!--xml声明-->
+<!--1. xmlns：xml namespace 用于说明beans标签的命名空间（因为beans标签下还包含了bean等标签，所以其实就是这个文档的命名空间了）。
+            不加冒号的话，就是默认的命名空间，加了冒号的就是这里面特定的标签的命名空间。
+            命名空间就是为了说明这个标签来自于哪，因为xml嘛，是一种用于沟通的标记语言，大家都可以设置自己的标签，所以就要说清楚这个标签是哪的，用命名空间来唯一化。
+    2.xsi:schemaLocation:用于说明XSD在哪，这是一一匹配的，第一行说明是哪个xml，第二说明这个xml对应的XML结构也就是XSD在哪，
+            这是一个网址，但是spring可以提前把对应的文件下载下来，就像下载一个jar包一样。
+            XSD用来说明XML的结构，通过XSD就可以校验这个XML文件的格式是否正确。
+            -->
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
@@ -13,7 +20,6 @@
         <property name="id" value="123"/>
         <property name="name" value="KK123"/>
     </bean>
-
     <bean id="student100"
           class="io.kimmking.spring01.Student">
         <property name="id" value="100"/>
@@ -46,7 +52,7 @@
     <aop:aspectj-autoproxy/>
     <!--aop：spring aop的实现是动态代理，那么自然是需要说明原始类和代理类 对应的方法的-->
     <!--XML 配置的方式里也有proxy-target-class="true"-->
-    <aop:config >
+    <aop:config>
         <!--aop：配置切点（就是原始类的方法）-->
         <aop:pointcut expression="execution(* io.kimmking.aop.*.*(..))" id="p1"/> <!--切点-->
         <!--aop：配置切面（就是代理类的方法），以及切面如何执行-->

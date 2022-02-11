@@ -50,7 +50,7 @@ public class Student implements Serializable, BeanNameAware, ApplicationContextA
     }
 
     /**
-     * 输出beanName（不确定从哪进行的赋值）
+     * 输出beanName（是BeanNameAware给set进来的）
      * 输出the names of all beans defined in this factory
      * TODO defined 是什么含义，这个bean创建了没有，是声明还是创建的意思
      *
