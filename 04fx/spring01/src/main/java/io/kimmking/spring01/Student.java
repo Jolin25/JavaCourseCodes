@@ -47,6 +47,7 @@ public class Student implements Serializable, BeanNameAware, ApplicationContextA
      * knowledge point:  ApplicationContextAware 用于在初始化Bean的时候将ApplicationContext提供给该Bean
      */
     private ApplicationContext applicationContext;
+
     /*初始化之前就调用了。应该是属性赋值的阶段做的。*/
     @Override
     public void setBeanName(String name) {
@@ -68,7 +69,7 @@ public class Student implements Serializable, BeanNameAware, ApplicationContextA
 
 
     public static Student create() {
-        return new Student(101, "KK101", "1", null);
+        return new Student(101, "KK101", null, null);
     }
 
     /**

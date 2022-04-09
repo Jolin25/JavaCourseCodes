@@ -2,12 +2,11 @@
 <!--suppress SpringFacetInspection -->
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:component-scan base-package="io.kimmking.spring02"/>
-    <!--实现 Spring Bean 的装配:
-           方式一：xml
-    -->
+    <context:component-scan base-package="io.kimmking.jrl.homework.bean0"/>
+
     <bean id="student4homework_1" class="io.kimmking.spring01.Student">
 
     </bean>
@@ -17,7 +16,7 @@
         <property name="name" value="student2">
         </property>
     </bean>
-    <bean id="student4homework_3" class="io.kimmking.spring01.Student">
+    <bean id="favoriteStudent" class="io.kimmking.spring01.Student">
         <constructor-arg value="student3" name="name">
 
         </constructor-arg>
@@ -25,4 +24,8 @@
 
         </constructor-arg>
     </bean>
+    <!--实现 Spring Bean 的装配:
+          方式一：xml
+   -->
+
 </beans>

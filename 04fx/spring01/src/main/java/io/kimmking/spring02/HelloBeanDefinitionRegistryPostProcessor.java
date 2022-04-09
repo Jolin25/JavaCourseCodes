@@ -11,9 +11,6 @@ import org.springframework.stereotype.Component;
 /**
  * knowledge point:
  */
-// TODO_Joly:这是对所有的Bean吗，所以Spring是在容器启动了之后一次性把所有的Bean都专配到了上下文中的？而注入是按需注入
-// TODO_Joly:和工厂有关的，所以和Bean的生命周期无关对吗？
-// TODO_Joly:这个类会在初始化之前执行吧--->对，先配置Bean，再统一进行初始化处理
 @Component
 public class HelloBeanDefinitionRegistryPostProcessor implements BeanDefinitionRegistryPostProcessor {
     @Override
@@ -24,7 +21,7 @@ public class HelloBeanDefinitionRegistryPostProcessor implements BeanDefinitionR
         RootBeanDefinition rootBeanDefinition = new RootBeanDefinition(Student.class);
         rootBeanDefinition.getPropertyValues().add("id", 101);
         rootBeanDefinition.getPropertyValues().add("name", "KK101");
-        /*向上下文中装配指定的bean*/
+        /*向上下文中放入指定的bean*/
         registry.registerBeanDefinition("s101", rootBeanDefinition);
         RootBeanDefinition rootBeanDefinition2 = new RootBeanDefinition(Student.class);
         rootBeanDefinition2.getPropertyValues().add("id", 1125);
@@ -45,5 +42,5 @@ public class HelloBeanDefinitionRegistryPostProcessor implements BeanDefinitionR
         /*配置单例*/
         // TODO_Joly:没放进去
         beanFactory.registerSingleton("s102", Student.create());
-     }
+    }
 }
