@@ -15,7 +15,6 @@ public class ForeachDemo {
     
         System.out.println(demo.x);
     }
-    
     private void test() {
         List list = Arrays.asList(1,2);
         int y = 1;

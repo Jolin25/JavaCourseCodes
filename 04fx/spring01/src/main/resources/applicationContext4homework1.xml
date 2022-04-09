@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--suppress SpringFacetInspection -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <context:component-scan base-package="io.kimmking.spring02"/>
+    <!--实现 Spring Bean 的装配:
+           方式一：xml
+    -->
+    <bean id="student4homework_1" class="io.kimmking.spring01.Student">
+
+    </bean>
+    <bean id="student4homework_2" class="io.kimmking.spring01.Student">
+        <property name="id" value="2">
+        </property>
+        <property name="name" value="student2">
+        </property>
+    </bean>
+    <bean id="student4homework_3" class="io.kimmking.spring01.Student">
+        <constructor-arg value="student3" name="name">
+
+        </constructor-arg>
+        <constructor-arg name="id" value="3">
+
+        </constructor-arg>
+    </bean>
+</beans>

@@ -20,7 +20,6 @@ public class GenericDemo implements Serializable {
         Class c = (Class) p.getActualTypeArguments()[0];
         System.out.println(c);
     }
-    
     public static class Person<T extends Serializable> {
         
     }

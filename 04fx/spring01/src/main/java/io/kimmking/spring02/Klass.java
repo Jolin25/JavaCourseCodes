@@ -6,7 +6,8 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * 没有实现接口
+ * 1.演示：AOP
+ * 没有实现接口：Spring默认使用CGLib来实现AOP
  *
  * @author Joly
  */
