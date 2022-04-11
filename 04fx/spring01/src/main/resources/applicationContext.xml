@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?><!--xml声明-->
-<!--1. xmlns：xml namespace 用于说明beans标签的命名空间（因为beans标签下还包含了bean等标签，所以其实就是这个文档的命名空间了）。
+<!--1. xmlns：
+            1.1 xml namespace 用于说明beans标签的命名空间（因为beans标签下还包含了bean等标签，所以其实就是这个文档的命名空间了）。
             不加冒号的话，就是默认的命名空间，加了冒号的就是这里面特定的标签的命名空间。
-            命名空间就是为了说明这个标签来自于哪，因为xml嘛，是一种用于沟通的标记语言，大家都可以设置自己的标签，所以就要说清楚这个标签是哪的，用命名空间来唯一化。
-    2.xsi:schemaLocation:用于说明XSD在哪，这是一一匹配的，第一行说明是哪个xml，第二说明这个xml对应的XML结构也就是XSD在哪，
-            这是一个网址，但是spring可以提前把对应的文件下载下来，就像下载一个jar包一样。
-            XSD用来说明XML的结构，通过XSD就可以校验这个XML文件的格式是否正确。
+            1.2 命名空间就是为了说明这个标签来自于哪，因为xml嘛，是一种用于沟通的标记语言，大家都可以设置自己的标签，
+            所以就要说清楚这个标签是哪的，用唯一的命名空间来唯一化。
+    2.xsi:schemaLocation:
+            2.1 用于说明XSD在哪，这是一一匹配的，第一行说明是哪个xml，第二说明这个xml对应的XML结构也就是XSD在哪，
+            这是一个网址，但是spring提前把对应的文件下载下来了，放在某个jar包里（有一一对应信息说明放在哪个jar包里的哪个位置，key为xsd的网址）
+            ，然后在需要文件的时候去找就好了。（这样就不需要在运行的时候去需要网络了）
+            (其实用网址主要是为了让这个xsd唯一吧，一个namespace对应一个xsd撒，那当然就都要唯一了)
+            2.2 XSD（XML Schema Definition）用来说明XML的结构，通过XSD就可以校验这个XML文件的格式是否正确。
             -->
 <!--suppress SpringFacetInspection -->
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -14,7 +19,9 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                         http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
                         http://www.springframework.org/schema/context
-                        http://www.springframework.org/schema/context/spring-context-3.2.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+                        http://www.springframework.org/schema/context/spring-context-3.2.xsd
+                        http://www.springframework.org/schema/aop
+                        https://www.springframework.org/schema/aop/spring-aop.xsd">
     <!--生命bean：id、class、[属性]-->
     <bean id="student123"
           class="io.kimmking.spring01.Student">
@@ -40,7 +47,7 @@
         </property>
     </bean>
 
-
+    <!--开启注解扫描-->
     <context:component-scan base-package="io.kimmking.spring02"/>
 
     <!--aop：把切面配置为bean-->
