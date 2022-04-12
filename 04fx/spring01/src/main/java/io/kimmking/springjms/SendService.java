@@ -19,18 +19,15 @@ import javax.jms.Session;
  */
 @Component
 public class SendService {
-    /**
-     * 配置文件里面注入的JMSTemplate
-     *
-     * @author jrl
-     * @date 2022/2/11
-     */
+
     @Autowired
     JmsTemplate jmsTemplate;
-
+    // TODO_Joly:final？
     public void send(final Student user) {
         jmsTemplate.send("test.queue", new MessageCreator() {
+            // TODO_Joly:为什么这里要限定Session（Java程序和JMS服务间的Session）
             public Message createMessage(Session session) throws JMSException {
+                // 把user序列化成json格式
                 return session.createObjectMessage(JSON.toJSONString(user));
             }
         });

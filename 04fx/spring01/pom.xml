@@ -9,8 +9,8 @@
     <version>1.0</version>
 
     <properties>
-                <spring-version>5.2.7.RELEASE</spring-version>
-<!--        <spring-version>4.3.29.RELEASE</spring-version>-->
+        <spring-version>5.2.7.RELEASE</spring-version>
+        <!--        <spring-version>4.3.29.RELEASE</spring-version>-->
     </properties>
 
     <build>
@@ -93,7 +93,9 @@
             <artifactId>spring-messaging</artifactId>
             <version>${spring-version}</version>
         </dependency>
-        <!--spring jms ： jmsTemplate 就在这里面-->
+        <!--spring jms -->
+        <!--Spring provides a JMS integration framework that simplifies the use of the JMS API
+        in much the same way as Spring’s integration does for the JDBC API.-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jms</artifactId>
@@ -153,7 +155,7 @@
             <version>1.10.19</version>
             <scope>test</scope>
         </dependency>
-        <!-- activeMQ 的 客户端-->
+        <!-- activeMQ 的 客户端:配合演示JMS-->
         <dependency>
             <groupId>org.apache.activemq</groupId>
             <artifactId>activemq-client</artifactId>

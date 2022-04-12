@@ -14,8 +14,8 @@ public class JmsSender {
         SendService sendService = (SendService) context.getBean("sendService");
 
         sendService.send(student2);
-
-        System.out.println("send successfully, please visit http://localhost:8161/admin to see it");
+        // DONE_Joly: http://localhost:8161/admin  8161是什么--->是activemq的访问地址
+        System.out.println("send successfully, please visit http://47.115.148.27:8161/admin to see it");
     }
 
 }
