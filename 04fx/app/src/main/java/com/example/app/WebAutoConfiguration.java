@@ -7,7 +7,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 /**
- * knowledge point:  @Import 用来当前类是用来自动装配被引入的那个类的
+ * knowledge point:
+ * Import注解：和 Spring 的 xml 配置文件中的<import></import>一样
+ * EnableConfigurationProperties注解：
  */
 @Configuration
 @Import(WebConfiguration.class)
@@ -16,7 +18,7 @@ public class WebAutoConfiguration {
 
     @Autowired
     WebProperties properties;
-
+    // TODO_Joly:这里就算不import也可以注入的吧
     @Autowired
     WebConfiguration configuration;
 

@@ -5,9 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-/**
- * knowledge point:  springboot 的入口点
- */
+
 @SpringBootApplication
 public class App {
 
@@ -20,6 +18,7 @@ public class App {
     @Autowired
     WebInfo info;
 
+    // TODO_Joly:什么都没注册，那这里的目的是什么
     @Bean
     public void printInfo() {
         System.out.println(info.getName());
