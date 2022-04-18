@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
+ * ½øÐÐbeanµÄ×¢²á
  * @author jrl
  * @date Create in 17:30 2022/4/9
  */
