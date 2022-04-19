@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+top/jrl/homework/mystarter/config/LombokAutoConfigguration

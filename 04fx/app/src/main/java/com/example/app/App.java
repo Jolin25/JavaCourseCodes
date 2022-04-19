@@ -18,7 +18,7 @@ public class App {
     @Autowired
     WebInfo info;
 
-    // TODO_Joly:什么都没注册，那这里的目的是什么
+    // DONE_Joly:什么都没注册，那这里的目的是什么--->为了运行一下，看看WebInfo注入了没有
     @Bean
     public void printInfo() {
         System.out.println(info.getName());
