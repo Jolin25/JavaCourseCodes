@@ -32,7 +32,7 @@ public class JDBCCRUD {
         //4.2 增
         int executeUpdate = statement.executeUpdate("insert into person values (26,'Jolin-super',0)");
         //5.2 增
-        if (executeUpdate != -1){
+        if (executeUpdate != -1) {
             System.out.println(executeUpdate);
         }
         //6.关闭资源

@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
+ * https://www.baeldung.com/hikaricp
+ *
  * @author jrl
  * @date Create in 14:16 2022/4/23
  */
