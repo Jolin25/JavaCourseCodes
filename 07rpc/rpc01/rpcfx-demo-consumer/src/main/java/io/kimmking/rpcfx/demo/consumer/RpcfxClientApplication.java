@@ -27,7 +27,9 @@ public class RpcfxClientApplication {
 
 		// UserService service = new xxx();
 		// service.findById
-		// stub
+
+		/*这里演示了两种生成stub的方式*/
+		// 生成stub
 		UserService userService = Rpcfx.create(UserService.class, "http://localhost:8080/");
 		// 调用服务（由代理去做实际的远程调用）
 		User user = userService.findById(1);
@@ -37,8 +39,8 @@ public class RpcfxClientApplication {
 		Order order = orderService.findOrderById(1992129);
 		System.out.println(String.format("find order name=%s, amount=%f",order.getName(),order.getAmount()));
 
-		//
-		UserService userService2 = Rpcfx.createFromRegistry(UserService.class, "localhost:2181", new TagRouter(), new RandomLoadBalancer(), new CuicuiFilter());
+		// 从注册中心选个服务，来生成stub
+		// UserService userService2 = Rpcfx.createFromRegistry(UserService.class, "localhost:2181", new TagRouter(), new RandomLoadBalancer(), new CuicuiFilter());
 
 		// SpringApplication.run(RpcfxClientApplication.class, args);
 	}

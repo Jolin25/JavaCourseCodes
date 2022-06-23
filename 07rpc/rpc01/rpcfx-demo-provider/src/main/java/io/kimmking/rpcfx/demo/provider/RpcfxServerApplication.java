@@ -71,9 +71,14 @@ public class RpcfxServerApplication {
 
 	@Autowired
 	RpcfxInvoker invoker;
-
+	/**
+	 * 网络通信时，会直接调用这个API。然后就会到skeleton操作的部分
+	 * @date 2022/6/23
+	 * @param
+	 * @return
+	 */
 	@PostMapping("/")
-	public RpcfxResponse invoke(@RequestBody RpcfxRequest request) {
+	public RpcfxResponse invoke(@RequestBody RpcfxRequest request) throws InstantiationException, IllegalAccessException {
 		return invoker.invoke(request);
 	}
 
