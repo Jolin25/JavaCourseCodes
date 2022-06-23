@@ -9,7 +9,11 @@ import io.kimmking.rpcfx.api.RpcfxResponse;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
-
+/**
+ * 服务端会调用的代码
+ * @author Joly
+ * @date 2022/6/22
+ */
 public class RpcfxInvoker {
 
     private RpcfxResolver resolver;
@@ -17,12 +21,18 @@ public class RpcfxInvoker {
     public RpcfxInvoker(RpcfxResolver resolver){
         this.resolver = resolver;
     }
-
+    /**
+     * 调用
+     * @date 2022/6/22
+     * @param
+     * @return
+     */
     public RpcfxResponse invoke(RpcfxRequest request) {
         RpcfxResponse response = new RpcfxResponse();
         String serviceClass = request.getServiceClass();
 
         // 作业1：改成泛型和反射
+        // 现在是通过spring 的 bean来做的映射关系
         Object service = resolver.resolve(serviceClass);//this.applicationContext.getBean(serviceClass);
 
         try {

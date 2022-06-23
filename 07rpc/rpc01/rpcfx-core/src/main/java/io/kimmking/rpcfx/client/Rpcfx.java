@@ -16,12 +16,25 @@ import java.lang.reflect.Proxy;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 客户端会调用的代码
+ *
+ * @author Joly
+ * @date 2022/6/22
+ */
 public final class Rpcfx {
 
     static {
         ParserConfig.getGlobalInstance().addAccept("io.kimmking");
     }
 
+    /**
+     * 有了注册中心的代理，会在基础RPC之上添加一些功能
+     *
+     * @param
+     * @return
+     * @date 2022/6/23
+     */
     public static <T, filters> T createFromRegistry(final Class<T> serviceClass, final String zkUrl, Router router, LoadBalancer loadBalance, Filter filter) {
 
         // 加filte之一
@@ -39,6 +52,13 @@ public final class Rpcfx {
 
     }
 
+    /**
+     * 单纯的代理，简单的实现RPC
+     *
+     * @param
+     * @return
+     * @date 2022/6/23
+     */
     public static <T> T create(final Class<T> serviceClass, final String url, Filter... filters) {
 
         // 0. 替换动态代理 -> 字节码生成
@@ -46,6 +66,12 @@ public final class Rpcfx {
 
     }
 
+    /**
+     * 实现服务消费者对服务提供者某个服务的调用
+     *
+     * @author Joly
+     * @date 2022/6/22
+     */
     public static class RpcfxInvocationHandler implements InvocationHandler {
 
         public static final MediaType JSONTYPE = MediaType.get("application/json; charset=utf-8");
@@ -64,6 +90,13 @@ public final class Rpcfx {
         // int byte char float double long bool
         // [], data class
 
+        /**
+         * 代理后，会替换原方法的执行
+         *
+         * @param
+         * @return
+         * @date 2022/6/22
+         */
         @Override
         public Object invoke(Object proxy, Method method, Object[] params) throws Throwable {
 
@@ -71,18 +104,21 @@ public final class Rpcfx {
             // mock == true, new Student("hubao");
 
             RpcfxRequest request = new RpcfxRequest();
+            // 因为服务描述就是这么定义的服务提供者和服务消费者如何确认要消费的服务，所以就要传输这些信息
+            // 如果换了别的服务描述方式,那么这里的参数可能就会不同.但本质上还是确定类&&方法&&参数
+            // 只是在不同的地方确认这个区别而已
             request.setServiceClass(this.serviceClass.getName());
             request.setMethod(method.getName());
             request.setParams(params);
 
-            if (null!=filters) {
+            if (null != filters) {
                 for (Filter filter : filters) {
                     if (!filter.filter(request)) {
                         return null;
                     }
                 }
             }
-
+            // 远程调用
             RpcfxResponse response = post(request, url);
 
             // 加filter地方之三
@@ -90,14 +126,22 @@ public final class Rpcfx {
 
             // 这里判断response.status，处理异常
             // 考虑封装一个全局的RpcfxException
-
+            // 对服务提供者的服务结果进行反序列化处理
             return JSON.parse(response.getResult().toString());
         }
 
+        /**
+         * 进行远程调用
+         *
+         * @param
+         * @return
+         * @date 2022/6/22
+         */
         private RpcfxResponse post(RpcfxRequest req, String url) throws IOException {
+            /*1. 序列化*/
             String reqJson = JSON.toJSONString(req);
-            System.out.println("req json: "+reqJson);
-
+            System.out.println("req json: " + reqJson);
+            /*2. 选择网络通信协议并进行网络传输，这里用的HTTP*/
             // 1.可以复用client
             // 2.尝试使用httpclient或者netty client
             OkHttpClient client = new OkHttpClient();
@@ -105,8 +149,10 @@ public final class Rpcfx {
                     .url(url)
                     .post(RequestBody.create(JSONTYPE, reqJson))
                     .build();
+            // DONE_JOLY：同步还是异步的---> OKHttp都提供了支持，这里用的是同步的
             String respJson = client.newCall(request).execute().body().string();
-            System.out.println("resp json: "+respJson);
+            System.out.println("resp json: " + respJson);
+            /*3. 反序列化服务结果，并返回结果*/
             return JSON.parseObject(respJson, RpcfxResponse.class);
         }
     }

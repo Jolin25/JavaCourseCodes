@@ -27,19 +27,20 @@ public class RpcfxClientApplication {
 
 		// UserService service = new xxx();
 		// service.findById
-
+		// stub
 		UserService userService = Rpcfx.create(UserService.class, "http://localhost:8080/");
+		// 调用服务（由代理去做实际的远程调用）
 		User user = userService.findById(1);
 		System.out.println("find user id=1 from server: " + user.getName());
 
-//		OrderService orderService = Rpcfx.create(OrderService.class, "http://localhost:8080/");
-//		Order order = orderService.findOrderById(1992129);
-//		System.out.println(String.format("find order name=%s, amount=%f",order.getName(),order.getAmount()));
-//
-//		//
-//		UserService userService2 = Rpcfx.createFromRegistry(UserService.class, "localhost:2181", new TagRouter(), new RandomLoadBalancer(), new CuicuiFilter());
+		OrderService orderService = Rpcfx.create(OrderService.class, "http://localhost:8080/");
+		Order order = orderService.findOrderById(1992129);
+		System.out.println(String.format("find order name=%s, amount=%f",order.getName(),order.getAmount()));
 
-//		SpringApplication.run(RpcfxClientApplication.class, args);
+		//
+		UserService userService2 = Rpcfx.createFromRegistry(UserService.class, "localhost:2181", new TagRouter(), new RandomLoadBalancer(), new CuicuiFilter());
+
+		// SpringApplication.run(RpcfxClientApplication.class, args);
 	}
 
 	private static class TagRouter implements Router {

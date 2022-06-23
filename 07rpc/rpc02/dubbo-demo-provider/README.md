@@ -1,0 +1,1 @@
+1. SpringBoot 提供了对Dubbo的支持，搞了个starter，所以配置起来更加方便

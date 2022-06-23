@@ -1,5 +1,5 @@
 package io.kimmking.rpcfx.demo.api;
-
+/** knowledge point:  说明和接口相关的实体类信息*/
 public class Order {
 
     private int id;
