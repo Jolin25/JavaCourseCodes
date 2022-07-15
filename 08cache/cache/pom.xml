@@ -46,7 +46,7 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 		</dependency>
-		<!-- spring 提供的 cache 使用方式，需要配合ehcache等使用-->
+		<!-- spring 提供的 cache 使用方式，需要配合ehcache\redis等使用-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-cache</artifactId>

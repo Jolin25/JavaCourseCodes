@@ -17,6 +17,11 @@ import javax.annotation.Resource;
 
 import static org.springframework.data.redis.cache.RedisCacheConfiguration.defaultCacheConfig;
 
+/**
+ * knowledge point:
+ * 全局的 缓存配置，是 Spring Cache的
+ * 在这个例子里，Spring Cache 是配合 Redis 来用的
+ */
 @Configuration
 public class CacheConfig extends CachingConfigurerSupport {
 
@@ -24,13 +29,15 @@ public class CacheConfig extends CachingConfigurerSupport {
     private RedisConnectionFactory factory;
 
     /**
-     * 自定义生成redis-key
+     * Generate a key
+     * 这个例子里的key就是自定义生成的redis-key
      *
      * @return
      */
     @Override
     @Bean
     public KeyGenerator keyGenerator() {
+        // TODO_Joly:这三个参数从哪来的
         return (o, method, objects) -> {
             StringBuilder sb = new StringBuilder();
             sb.append(o.getClass().getName()).append(".");
@@ -47,7 +54,7 @@ public class CacheConfig extends CachingConfigurerSupport {
     public RedisTemplate<Object, Object> redisTemplate() {
         RedisTemplate<Object, Object> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(factory);
-
+        /** knowledge point:  设置序列化器，Jackson2Json*/
         GenericJackson2JsonRedisSerializer genericJackson2JsonRedisSerializer = new GenericJackson2JsonRedisSerializer();
 
         redisTemplate.setKeySerializer(genericJackson2JsonRedisSerializer);

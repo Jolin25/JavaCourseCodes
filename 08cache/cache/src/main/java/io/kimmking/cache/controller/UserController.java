@@ -4,6 +4,7 @@ import io.kimmking.cache.entity.User;
 import io.kimmking.cache.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,8 +17,8 @@ public class UserController {
     @Autowired
     UserService userService;
     
-    @RequestMapping("/user/find")
-    User find(Integer id) {
+    @RequestMapping("/user/find/{id}")
+    User find(@PathVariable Integer id) {
         return userService.find(id);
         //return new User(1,"KK", 28);
     }

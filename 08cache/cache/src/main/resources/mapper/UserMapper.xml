@@ -3,6 +3,7 @@
 <mapper namespace="io.kimmking.cache.mapper.UserMapper">
 
 <!--    开启mybatis cache  -->
+    <!--    要配合 ehcache.xml 这个配置文件，mybatis 使用 ehcache 来实现缓存的-->
 <!--    <cache type="org.mybatis.caches.ehcache.LoggingEhcache">-->
 <!--        <property name="memoryStoreEvictionPolicy" value="LRU"/>-->
 <!--    </cache>-->
