@@ -17,7 +17,9 @@ public class RedisApplication {
 	public static void main(String[] args) {
 
 		// C1.最简单demo
-		Jedis jedis = new Jedis("localhost", 6379);
+		// Jedis 基本上就是Redis命令的翻版
+		Jedis jedis = new Jedis("47.115.148.27", 6379);
+		// Redis 信息
 		System.out.println(jedis.info());
 		jedis.set("uptime", new Long(System.currentTimeMillis()).toString());
 		System.out.println(jedis.get("uptime"));

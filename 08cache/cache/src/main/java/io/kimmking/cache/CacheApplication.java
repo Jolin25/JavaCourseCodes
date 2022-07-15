@@ -7,7 +7,7 @@ import org.springframework.cache.annotation.EnableCaching;
 
 @SpringBootApplication(scanBasePackages = "io.kimmking.cache")
 @MapperScan("io.kimmking.cache.mapper")
-@EnableCaching
+@EnableCaching // 开启缓存
 public class CacheApplication {
 
 	public static void main(String[] args) {
