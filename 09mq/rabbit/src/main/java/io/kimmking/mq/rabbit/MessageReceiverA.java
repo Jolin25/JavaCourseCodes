@@ -4,7 +4,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
-
+/**
+ * 消费者A
+ * @author Joly
+ * @date 2022/7/26
+ */
 @Component
 @RabbitListener(queues = RabbitConfig.QUEUE_A)
 @Slf4j

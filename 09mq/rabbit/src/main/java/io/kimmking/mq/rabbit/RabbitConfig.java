@@ -12,7 +12,11 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
-
+/**
+ * 配置 RabbitMQ的相关信息，以及配置 exchange 和 routingkey
+ * @author Joly
+ * @date 2022/7/26
+ */
 @Configuration
 public class RabbitConfig {
 
@@ -72,7 +76,7 @@ public class RabbitConfig {
     public DirectExchange defaultExchange() {
         return new DirectExchange(EXCHANGE_A);
     }
-
+    // mq 会自动根据这里的配置来创建 队列A、B、C
     @Bean
     public Queue queueA() {
         return new Queue(QUEUE_A, true); //队列持久
