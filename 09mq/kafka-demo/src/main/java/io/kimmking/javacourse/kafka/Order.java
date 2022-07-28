@@ -5,6 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * 就是个Order实体类
+ *
+ * @author Joly
+ * @date 2022/7/23
+ */
 
 @NoArgsConstructor
 @AllArgsConstructor

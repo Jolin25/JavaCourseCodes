@@ -21,6 +21,7 @@ public class ConsumerImpl implements Consumer {
 //        properties.put("enable.auto.commit", false);
 //        properties.put("isolation.level", "read_committed");
 //        properties.put("auto.offset.reset", "latest");
+//        消费者组：多个消费者一起来消费这个消费者组可以消费的消息
         properties.put("group.id", "java1-kimmking");
         properties.put("bootstrap.servers", "localhost:9092");
         properties.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
@@ -30,11 +31,12 @@ public class ConsumerImpl implements Consumer {
 
     @Override
     public void consumeOrder() {
-
+        // 订阅topic
         consumer.subscribe(Collections.singletonList(topic));
 
         try {
             while (true) { //拉取数据
+                // 每次拉取到的是一批消息
                 ConsumerRecords<String, String> poll = consumer.poll(Duration.ofSeconds(1));
 
                 for (ConsumerRecord o : poll) {
@@ -58,6 +60,7 @@ public class ConsumerImpl implements Consumer {
             e.printStackTrace();
         } finally {
             try {
+                // 同步消费者信息，消费的位置
                 consumer.commitSync();//currentOffsets);
             } catch (Exception e) {
                 consumer.close();
