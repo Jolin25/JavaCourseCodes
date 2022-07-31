@@ -10,20 +10,20 @@ public class ProducerDemo {
     Producer<String> stringProducer;
 
     @SneakyThrows
-    public ProducerDemo(){
+    public ProducerDemo() {
         stringProducer = Config.createClient().newProducer(Schema.STRING)
                 .topic("my-kk")
                 .create();
     }
 
-    @SneakyThrows
+    @SneakyThrows // 这玩意允许我不处理检查异常
     public void sendMessage() {
         for (int i = 0; i < 1000; i++) {
             stringProducer.send(i + " message from pulsar.");
         }
     }
 
-
+//以下为生产者的各种生成模式
 //    //关闭操作也可以是异步的：
 //
 //    producer.closeAsync()
@@ -50,7 +50,7 @@ public class ProducerDemo {
 
     //   添加参数
 //    producer.newMessage()
-//            .key("my-message-key")
+//            .key("my-message-key") // 用key来share，Kafka 里面也有一个类似的 key
 //            .value("my-async-message".getBytes())
 //            .property("my-key", "my-value")
 //            .property("my-other-key", "my-other-value")

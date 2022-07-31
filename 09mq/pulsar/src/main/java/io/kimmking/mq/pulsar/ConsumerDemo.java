@@ -13,7 +13,7 @@ public class ConsumerDemo {
 
         Consumer consumer = Config.createClient().newConsumer()
                 .topic("my-kk")
-                .subscriptionName("my-subscription")
+                .subscriptionName("my-subscription") // DONE_Joly:subscription 是什么--->消费者组
                 .subscribe();
 
         while (true) {
@@ -24,14 +24,14 @@ public class ConsumerDemo {
                 // Do something with the message
                 System.out.printf("Message received from pulsar: %s \n", new String(msg.getData()));
 
-                // Acknowledge the message so that it can be deleted by the message broker
+                // Acknowledge the message so that it can be deleted by the message broker 确认机制（业务决定是否消费成功）
                 consumer.acknowledge(msg);
             } catch (Exception e) {
-                // Message failed to process, redeliver later
+                // Message failed to process, redeliver later 确认机制（业务决定是否消费成功）
                 consumer.negativeAcknowledge(msg);
             }
         }
-
+//以下为各种消费者的配置模式
 //
 //        client.newConsumer()
 //                .deadLetterPolicy(DeadLetterPolicy.builder().maxRedeliverCount(10)

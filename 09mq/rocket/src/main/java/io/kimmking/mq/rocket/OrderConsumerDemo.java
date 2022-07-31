@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RocketMQMessageListener(consumerGroup = "test2", topic = "test-k2")
-public class OrderConsumerDemo implements RocketMQReplyListener<Order,String> {
-
+public class OrderConsumerDemo implements RocketMQReplyListener<Order, String> { // 这里的Order是确认了泛型，这个泛型要和onMessage（）的参数类型一样
+    // 消费完了以后，返回个String 【这里实现的是RocketMQReplyListener】
     @Override
     public String onMessage(Order order) { // request-response
         System.out.println(this.getClass().getName() + " -> " + order);
