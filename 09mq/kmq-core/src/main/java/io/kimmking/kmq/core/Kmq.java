@@ -6,7 +6,12 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
 public final class Kmq {
-
+    /**
+     * 包装了 LinkedBlockingQueue（一个 Topic 对应了一个 LinkedBlockingQueue）
+     * @date 2022/7/31
+     * @param
+     * @return
+     */
     public Kmq(String topic, int capacity) {
         this.topic = topic;
         this.capacity = capacity;
