@@ -54,7 +54,7 @@ public class SpringDemo01 {
 
         school1.ding();
 
-        class1.dong();
+        class1.dong(); 
 
         System.out.println("   context.getBeanDefinitionNames() ===>> " + String.join(",", context.getBeanDefinitionNames()));
 
