@@ -14,7 +14,13 @@ import javax.annotation.Resource;
 import java.math.BigDecimal;
 import java.util.List;
 
-// CommandLineRunner 和 ApplicationRunner 的作用是一样的，用来运行 run （） 方法
+/**
+ * 生产者
+ *
+ * @author jrl
+ * @date 2022/12/9
+ */
+// CommandLineRunner 和 ApplicationRunner 的作用是一样的，可以运行 run （） 方法
 @SpringBootApplication
 public class RocketApplication implements CommandLineRunner {
 
@@ -45,18 +51,18 @@ public class RocketApplication implements CommandLineRunner {
         String result = rocketMQTemplate.sendAndReceive(topic1, new Order(System.currentTimeMillis(), "CNY2USD", 0.1502d), String.class);
         System.out.println(" consumer result => " + result);
         //版本二：异步发送消息，需要设置callback来处理消息发送情况的结果（回调处理）
-       rocketMQTemplate.asyncSend(topic1, new Order(System.currentTimeMillis(),"CNY2USD", 0.1502d), new SendCallback() {
-           @Override
-           public void onSuccess(SendResult result) {
-               System.out.printf("async onSucess SendResult=%s %n", result);
-           }
+        rocketMQTemplate.asyncSend(topic1, new Order(System.currentTimeMillis(), "CNY2USD", 0.1502d), new SendCallback() {
+            @Override
+            public void onSuccess(SendResult result) {
+                System.out.printf("async onSucess SendResult=%s %n", result);
+            }
 
-           @Override
-           public void onException(Throwable throwable) {
-               System.out.printf("async onException Throwable=%s %n", throwable);
-           }
+            @Override
+            public void onException(Throwable throwable) {
+                System.out.printf("async onException Throwable=%s %n", throwable);
+            }
 
-       });
+        });
 
 
     }
