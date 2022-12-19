@@ -2,7 +2,7 @@ package java0.conc0301.op;
 
 public class Join {
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Object oo = new Object();
 
         MyThread thread1 = new MyThread("thread1 -- ");

@@ -1,5 +1,11 @@
 package java0.conc0301;
 
+/**
+ * 创建线程的三种基本方式：
+ * 1. 继承 Thread 类
+ *
+ * @author Joly
+ */
 public class ThreadA extends Thread {
 
     public void run() {

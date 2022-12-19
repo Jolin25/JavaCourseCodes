@@ -1,5 +1,11 @@
 package java0.conc0301;
 
+/**
+ * 创建线程的三种基本方式：
+ * 2. 实现 Runnable接口，再用 Thread类
+ *
+ * @author Joly
+ */
 public class ThreadB implements Runnable {
 
     @Override
