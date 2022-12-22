@@ -10,6 +10,7 @@ import java.util.concurrent.Future;
  * 2.Future能够拿到子线程的异常，那么具体都有什么内容呢？--->可以直接catch拿到子线程抛出来的异常
  * 3.子线程异常了以后，在主线程中shutdown子线程，会抛异常吗？--->不会，就正常执行。
  * 甚至子线程当前还有任务正在执行的话，不会强行关闭，而是等执行完了当前任务，再关闭子线程，也就是所谓的优雅停机。
+ * @author Joly
  */
 public class ExceptionDemo {
 
