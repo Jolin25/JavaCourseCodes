@@ -1,6 +1,11 @@
 
 package java0.conc0302.lock;
 
+/**
+ * 模拟两个线程获取两个锁资源造成的死锁现象
+ *
+ * @author Joly
+ */
 public class LockMain {
 
     public static void main(String[] args) {
