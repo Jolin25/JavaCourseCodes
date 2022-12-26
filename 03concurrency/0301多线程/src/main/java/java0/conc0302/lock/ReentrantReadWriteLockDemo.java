@@ -1,6 +1,11 @@
 
 package java0.conc0302.lock;
 
+/**
+ * ReentrantReadWriteLock
+ *
+ * @author Joly
+ */
 public class ReentrantReadWriteLockDemo {
 
     public static void main(String[] args) {

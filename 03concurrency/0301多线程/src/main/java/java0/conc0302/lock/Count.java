@@ -3,10 +3,22 @@ package java0.conc0302.lock;
 
 import java.util.concurrent.locks.ReentrantLock;
 
+/**
+ * ReentrantLock
+ *
+ * @author Joly
+ */
 public class Count {
 
     final ReentrantLock lock = new ReentrantLock();
 
+    /**
+     * 就是一个模拟获得锁，执行业务，释放锁的过程。
+     *
+     * @param
+     * @return
+     * @date 2022/12/26
+     */
     public void get() {
 //        final ReentrantLock lock = new ReentrantLock();
         try {
@@ -20,6 +32,13 @@ public class Count {
         }
     }
 
+    /**
+     * 就是一个模拟获得锁，执行业务，释放锁的过程。
+     *
+     * @param
+     * @return
+     * @date 2022/12/26
+     */
     public void put() {
 //        final ReentrantLock lock = new ReentrantLock();
         try {

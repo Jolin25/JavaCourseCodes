@@ -5,8 +5,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
+/**
+ * ReentrantReadWriteLock
+ * 模拟去缓冲区获取数据，如果获取不到就进行赋值操作的功能
+ * @author Joly
+ */
 public class ReentrantReadWriteLockDemo2 {
 
+    //充当缓冲区
     private final Map<String, Object> map = new HashMap<>();
 
     private final ReentrantReadWriteLock rwLock = new ReentrantReadWriteLock();
@@ -22,7 +28,7 @@ public class ReentrantReadWriteLockDemo2 {
                 rwLock.readLock().unlock();
                 rwLock.writeLock().lock();
                 try {
-                    if (value == null) {
+                    if (value == null) {// 因为释放读锁到开启写锁的过程中可能value被赋值了
                         value = "aaaa";
                     }
                 } finally {
@@ -41,7 +47,7 @@ public class ReentrantReadWriteLockDemo2 {
 
     public static void main(String[] args) {
         ReentrantReadWriteLockDemo2 demo2 = new ReentrantReadWriteLockDemo2();
-        demo2.readWrite("bingfabiancheng");
+        demo2.readWrite("并发编程");
     }
 
 }
