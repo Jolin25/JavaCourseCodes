@@ -9,7 +9,7 @@ import java.util.concurrent.locks.LockSupport;
  * @author Joly
  */
 public class LockSupportDemo {
-    //对象锁
+    //类锁
     public static Object u = new Object();
 
     static ChangeObjectThread t1 = new ChangeObjectThread("t1");

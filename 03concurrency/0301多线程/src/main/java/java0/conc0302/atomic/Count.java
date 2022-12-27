@@ -1,6 +1,9 @@
 
 package java0.conc0302.atomic;
 
+/**
+ * @author Joly
+ */
 public class Count {
 
     private int num = 0;

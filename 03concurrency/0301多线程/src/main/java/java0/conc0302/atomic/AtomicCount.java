@@ -3,6 +3,10 @@ package java0.conc0302.atomic;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * AtomicInteger
+ * @author Joly
+ */
 public class AtomicCount {
 
     private AtomicInteger num = new AtomicInteger();

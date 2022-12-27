@@ -3,6 +3,10 @@ package java0.conc0302.atomic;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.LongAdder;
 
+/**
+ * 演示原子类做++线程安全
+ * @author Joly
+ */
 public class LongDemo {
     
     public static void main(String[] args) {
@@ -27,7 +31,8 @@ public class LongDemo {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        
+        //atomicLong=1000000
+        // longAdder =1000000
         System.out.println("atomicLong=" + atomicLong.get());
         System.out.println("longAdder =" + longAdder.sum());
         
