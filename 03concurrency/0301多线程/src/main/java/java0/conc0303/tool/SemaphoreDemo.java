@@ -2,24 +2,34 @@ package java0.conc0303.tool;
 
 import java.util.concurrent.Semaphore;
 
+/**
+ * Semaphore
+ * 同时允许指定线程数(permits)来访问和使用共享资源
+ *
+ * @author jrl
+ * @date 2022/12/28
+ */
 public class SemaphoreDemo {
-    
+
     public static void main(String[] args) {
-        int N = 8;            //工人数
-        Semaphore semaphore = new Semaphore(2); //机器数目
-        for (int i = 0; i < N; i++)
+        //工人数
+        int N = 8;
+        //机器数目
+        Semaphore semaphore = new Semaphore(2);
+        for (int i = 0; i < N; i++) {
             new Worker(i, semaphore).start();
+        }
     }
-    
+
     static class Worker extends Thread {
         private int num;
         private Semaphore semaphore;
-        
+
         public Worker(int num, Semaphore semaphore) {
             this.num = num;
             this.semaphore = semaphore;
         }
-        
+
         @Override
         public void run() {
             try {
