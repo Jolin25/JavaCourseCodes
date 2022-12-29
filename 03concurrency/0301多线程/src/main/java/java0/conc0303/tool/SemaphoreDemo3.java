@@ -76,7 +76,7 @@ public class SemaphoreDemo3 {
         final Semaphore notFull = new Semaphore(10);
         // 非空锁
         final Semaphore notEmpty = new Semaphore(0);
-        // 核心锁
+        // 核心锁 （实现了临界资源的互斥性）
         final Semaphore mutex = new Semaphore(1);
         // 库存容量，每个商品就是个数字
         final Object[] items = new Object[10];
