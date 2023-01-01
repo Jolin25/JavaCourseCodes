@@ -1,5 +1,8 @@
 package java0.conc0301.op;
 
+/**
+ * @author Joly
+ */
 public class WaitAndNotify {
     public static void main(String[] args) {
         MethodClass methodClass = new MethodClass();
@@ -30,32 +33,40 @@ public class WaitAndNotify {
         t1.start();
         t2.start();
         t3.start();
-        
+
     }
 }
 
 class MethodClass {
     // 定义生产最大量
     private final int MAX_COUNT = 20;
-    
+
     int productCount = 0;
-    
+
+    /**
+     * 每次生产一个产品，仓库容量20
+     *
+     * @param
+     * @return
+     * @date 2023/1/1
+     */
     public synchronized void product() throws InterruptedException {
         while (true) {
             System.out.println(Thread.currentThread().getName() + ":::run:::" + productCount);
             Thread.sleep(100);
             if (productCount >= MAX_COUNT) {
                 System.out.println("货舱已满,,.不必再生产");
-                
+
                 wait();
-            }else {
+            } else {
                 productCount++;
             }
-            
+            System.out.println(Thread.currentThread().getName() + "继续");
+
             notifyAll();
         }
     }
-    
+
     public synchronized void customer() throws InterruptedException {
         while (true) {
             System.out.println(Thread.currentThread().getName() + ":::run:::" + productCount);
@@ -63,10 +74,10 @@ class MethodClass {
             if (productCount <= 0) {
                 System.out.println("货舱已无货...无法消费");
                 wait();
-            }else {
+            } else {
                 productCount--;
             }
-            
+
             notifyAll();
         }
     }

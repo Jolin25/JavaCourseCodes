@@ -11,7 +11,6 @@ import java.util.concurrent.locks.ReentrantLock;
  * @author Joly
  */
 public class ConditionDemo {
-    // TODO_Joly:为什么用的是可重入锁?
     /**
      * @author jrl
      * @date 2022/12/26
@@ -38,12 +37,15 @@ public class ConditionDemo {
         //手动上锁
         lock.lock();
         try {
+            System.out.println(Thread.currentThread().getName()+"----------"+x+"开始执行任务");
             // 当count等于数组的大小时，当前线程等待，直到notFull通知，再进行生产
             //也就是说要等到满足了 notFull 这个 Condition 的时候，才开始继续执行
             while (count == items.length) {
+                System.out.println(Thread.currentThread().getName()+"----------"+x+"进入等待");
                 //相当于 wait
                 notFull.await();
             }
+            System.out.println(Thread.currentThread().getName()+"----------"+x+"继续执行任务");
             //朝数组放置一个元素
             items[putptr] = x;
             if (++putptr == items.length) {
